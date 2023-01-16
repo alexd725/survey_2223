@@ -24,10 +24,6 @@ except KeyError:
     st.error('Please log in first in the introduction section')
     st.stop()
 
-if logged_user not in ['zavodsky', 'klagova', 'kurian', 'sapak']:
-    st.error('You are not authorized to view this page')
-    st.stop()
-
 st.markdown('## Response rate information')
 
 st.markdown(read_markdown_file("markdown/response_rate_information.md"),
@@ -94,3 +90,26 @@ with rightcol:
               value=std_data_22,
               delta='{} from previous year'.format(
                   round(std_data_22 - std_data_21, 2)))
+
+st.info('## Free-response questions')
+st.warning(
+    "It's worth noting that there are a significant number of 'I don't know' and 'N/A' responses in the data for the questions below, which make it difficult to draw any strong conclusions about the opinions of students in this case."
+)
+st.info(
+    '### Question 6: What is one thing you see at LEAF Academy working really well with regards to learning?'
+)
+q6_left, q6_right = st.columns(2)
+q6_left.markdown(read_markdown_file("markdown/q6_y1.md"),
+                 unsafe_allow_html=True)
+q6_right.markdown(read_markdown_file("markdown/q6_y3.md"),
+                  unsafe_allow_html=True)
+
+st.info(
+    '### Question 7: What is one thing you see at LEAF Academy that could be improved with regards to learning?'
+)
+
+q7_left, q7_right = st.columns(2)
+q7_left.markdown(read_markdown_file("markdown/q7_y1.md"),
+                 unsafe_allow_html=True)
+q7_right.markdown(read_markdown_file("markdown/q7_y3.md"),
+                  unsafe_allow_html=True)

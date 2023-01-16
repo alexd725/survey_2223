@@ -258,6 +258,9 @@ TEACHERS = {
         'CSem 3C', 'CSem 4C', 'CSEM 1', 'CSem 2C', 'CSem 2A', 'CSem 2B',
         'CSem 3A', 'CSem 3B', 'CSem 4A', 'CSem 4B'
     ],
+    'jakabovic':[],
+    'townsend':[],
+    'pusey':[]
 }
 
 ALL_ACCESS = ['sapak', 'klagova', 'zavodsky', 'potash', 'retkovsky', 'sedlar']
