@@ -40,20 +40,25 @@ leaf_core_classes = get_classes_from_categories('LEAF Core')
 math_classes = get_classes_from_categories('MATH')
 science_classes = get_classes_from_categories('SCIE')
 language_classes = get_classes_from_categories('Language')
-ap_classes = get_classes_from_categories('AP')
+ap_stem_classes = get_classes_from_categories('AP STEM')
+ap_humanities_classes = get_classes_from_categories('AP Humanities')
 
-all_classes_local = ces_classes + csem_classes + el_classes + ell_classes + leaf_core_classes + math_classes + science_classes + language_classes + ap_classes
+all_classes_local = ces_classes + csem_classes + el_classes + ell_classes + leaf_core_classes + math_classes + science_classes + language_classes + ap_stem_classes + ap_humanities_classes
 
 st.info('## 1.0 – Class filters')
 st.markdown(
     '- Because there are many classes one can choose from, they were split into several general categories for easier selection. You can select any number of classes from any number of categories. If you want to select all classes from a particular category, you can click the "Select all" button next to the category name. Clicking the "Select all" button again will deselct all classes from that category.'
 )
+
 no_selected_classes_container = st.container()
+
+select_all_classes_button = st.checkbox('Select all classes')
+
 left_1, mid_1, right_1 = st.columns(3)
 with left_1:
     el_container = st.container()
-    all_el = st.checkbox('Select all')
-    if all_el:
+    all_el = st.checkbox('Select all EL classes')
+    if all_el or select_all_classes_button:
         filtered_el_classes = el_container.multiselect('Select EL classes',
                                                        el_classes,
                                                        default=el_classes)
@@ -63,8 +68,8 @@ with left_1:
 
 with mid_1:
     science_container = st.container()
-    all_science = st.checkbox('Select all', key='science')
-    if all_science:
+    all_science = st.checkbox('Select all science classes', key='science')
+    if all_science or select_all_classes_button:
         filtered_science_classes = science_container.multiselect(
             'Select science classes', science_classes, default=science_classes)
     else:
@@ -74,8 +79,8 @@ with mid_1:
 with right_1:
 
     ell_container = st.container()
-    all_ell = st.checkbox('Select all', key='ell')
-    if all_ell:
+    all_ell = st.checkbox('Select all ELL classes', key='ell')
+    if all_ell or select_all_classes_button:
         filtered_ell_classes = ell_container.multiselect('Select ELL classes',
                                                          ell_classes,
                                                          default=ell_classes)
@@ -87,8 +92,8 @@ left_2, mid_2, right_2 = st.columns(3)
 
 with left_2:
     ces_container = st.container()
-    all_ces = st.checkbox('Select all', key='ces')
-    if all_ces:
+    all_ces = st.checkbox('Select all CES classes', key='ces')
+    if all_ces or select_all_classes_button:
         filtered_ces_classes = ces_container.multiselect('Select CES classes',
                                                          ces_classes,
                                                          default=ces_classes)
@@ -98,8 +103,9 @@ with left_2:
 
 with mid_2:
     leaf_core_container = st.container()
-    all_leaf_core = st.checkbox('Select all', key='leaf_core')
-    if all_leaf_core:
+    all_leaf_core = st.checkbox('Select all LEAF:Core classes',
+                                key='leaf_core')
+    if all_leaf_core or select_all_classes_button:
         filtered_leaf_core_classes = leaf_core_container.multiselect(
             'Select LEAF core classes',
             leaf_core_classes,
@@ -110,8 +116,8 @@ with mid_2:
 
 with right_2:
     csem_container = st.container()
-    all_csem = st.checkbox('Select all', key='csem')
-    if all_csem:
+    all_csem = st.checkbox('Select all CSEM classes', key='csem')
+    if all_csem or select_all_classes_button:
         filtered_csem_classes = csem_container.multiselect(
             'Select Character Seminar classes',
             csem_classes,
@@ -123,8 +129,8 @@ with right_2:
 left_3, right_3 = st.columns(2)
 with left_3:
     math_container = st.container()
-    all_math = st.checkbox('Select all', key='math')
-    if all_math:
+    all_math = st.checkbox('Select all math classes', key='math')
+    if all_math or select_all_classes_button:
         filtered_math_classes = math_container.multiselect(
             'Select math classes', math_classes, default=math_classes)
     else:
@@ -133,8 +139,8 @@ with left_3:
 
 with right_3:
     nl_container = st.container()
-    all_nl = st.checkbox('Select all', key='nl')
-    if all_nl:
+    all_nl = st.checkbox('Select all NL classes', key='nl')
+    if all_nl or select_all_classes_button:
         filtered_nl_classes = nl_container.multiselect(
             'Select language classes',
             language_classes,
@@ -143,15 +149,30 @@ with right_3:
         filtered_nl_classes = nl_container.multiselect(
             'Select language classes', language_classes)
 
-ap_container = st.container()
-all_ap = st.checkbox('Select all', key='ap')
-if all_ap:
-    filtered_ap_classes = ap_container.multiselect('Select AP classes',
-                                                   ap_classes,
-                                                   default=ap_classes)
-else:
-    filtered_ap_classes = ap_container.multiselect('Select AP classes',
-                                                   ap_classes)
+left_4, right_4 = st.columns(2)
+
+with left_4:
+    ap_stem_container = st.container()
+    all_ap_stem = st.checkbox('Select all AP STEM classes', key='ap stem')
+    if all_ap_stem or select_all_classes_button:
+        filtered_ap_classes = ap_stem_container.multiselect(
+            'Select AP STEM classes', ap_stem_classes, default=ap_stem_classes)
+    else:
+        filtered_ap_classes = ap_stem_container.multiselect(
+            'Select AP STEM classes', ap_stem_classes)
+
+with right_4:
+    ap_humanities_container = st.container()
+    all_ap = st.checkbox('Select all AP Humanities classes',
+                         key='ap humanities')
+    if all_ap or select_all_classes_button:
+        filtered_ap_classes = ap_humanities_container.multiselect(
+            'Select AP Humanities classes',
+            ap_humanities_classes,
+            default=ap_humanities_classes)
+    else:
+        filtered_ap_classes = ap_humanities_container.multiselect(
+            'Select AP Humanities classes', ap_humanities_classes)
 
 filtered_classes = filtered_ces_classes + filtered_csem_classes + filtered_el_classes + filtered_ell_classes + filtered_leaf_core_classes + filtered_math_classes + filtered_nl_classes + filtered_science_classes + filtered_ap_classes
 
