@@ -8,11 +8,11 @@ st.set_page_config(layout="wide",
                    page_title='Class drilldown',
                    initial_sidebar_state='expanded')
 
-try:
-    logged_user = st.session_state['logged_user']
-except KeyError:
-    st.error('Please log in first in the introduction section')
-    st.stop()
+# try:
+#     logged_user = st.session_state['logged_user']
+# except KeyError:
+#     st.error('Please log in first in the introduction section')
+#     st.stop()
 
 st.info('# Overview: single class')
 st.markdown(
@@ -185,20 +185,20 @@ for i, chart in enumerate(all_charts):
             f'#### Mean: <span style="border-radius:4px;padding:0 6px; color:#FFFFFF;background-color:{get_styles_mean(all_mean[i])}">**{round(all_mean[i],1)}**</span>, Standard deviation: <span style="border-radius:4px;padding:0 6px; color:#FFFFFF; background-color:{get_styles_stdev(all_stdev[i])}">{round(all_stdev[i],1)}</span>',
             unsafe_allow_html=True)
         rightcol.markdown('---')
-        if (i == 13):
-            # rightcol.warning('Comments')
-            # rightcol.write(
-            #     'Please note that the numbers in the first column have no relevance to the actual number or content of comments left by students.'
-            # )
-            if logged_user in ALL_ACCESS:
-                rightcol.warning('Comments')
-                rightcol.write(
-                    'Please note that the numbers in the first column have no relevance to the actual number or content of comments left by students.'
-                )
-                rightcol.table(filtered_df_by_class_comments)
-            elif (selected_class in TEACHERS[logged_user]):
-                rightcol.warning('Comments')
-                rightcol.write(
-                    'Please note that the numbers in the first column have no relevance to the actual number or content of comments left by students.'
-                )
-                rightcol.table(filtered_df_by_class_comments)
+        # if (i == 13):
+        # rightcol.warning('Comments')
+        # rightcol.write(
+        #     'Please note that the numbers in the first column have no relevance to the actual number or content of comments left by students.'
+        # )
+        # if logged_user in ALL_ACCESS:
+        #     rightcol.warning('Comments')
+        #     rightcol.write(
+        #         'Please note that the numbers in the first column have no relevance to the actual number or content of comments left by students.'
+        #     )
+        #     rightcol.table(filtered_df_by_class_comments)
+        # elif (selected_class in TEACHERS[logged_user]):
+        #     rightcol.warning('Comments')
+        #     rightcol.write(
+        #         'Please note that the numbers in the first column have no relevance to the actual number or content of comments left by students.'
+        #     )
+        #     rightcol.table(filtered_df_by_class_comments)

@@ -18,11 +18,11 @@ st.warning(
     '*For the best viewing experience, open the menu in the top right corner, click "Settings" and choose a "Light" theme.*'
 )
 
-try:
-    logged_user = st.session_state['logged_user']
-except KeyError:
-    st.error('Please log in first in the introduction section')
-    st.stop()
+# try:
+#     logged_user = st.session_state['logged_user']
+# except KeyError:
+#     st.error('Please log in first in the introduction section')
+#     st.stop()
 
 st.markdown('## Response rate information')
 
