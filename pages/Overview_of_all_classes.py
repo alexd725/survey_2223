@@ -7,11 +7,11 @@ st.set_page_config(layout="wide",
                    page_title='Class overview',
                    initial_sidebar_state='expanded')
 
-try:
-    logged_user = st.session_state['logged_user']
-except KeyError:
-    st.error('Please log in first in the introduction section')
-    st.stop()
+# try:
+#     logged_user = st.session_state['logged_user']
+# except KeyError:
+#     st.error('Please log in first in the introduction section')
+#     st.stop()
 
 st.info('# Overview: All classes')
 
