@@ -155,10 +155,10 @@ with left_4:
     ap_stem_container = st.container()
     all_ap_stem = st.checkbox('Select all AP STEM classes', key='ap stem')
     if all_ap_stem or select_all_classes_button:
-        filtered_ap_classes = ap_stem_container.multiselect(
+        filtered_ap_stem_classes = ap_stem_container.multiselect(
             'Select AP STEM classes', ap_stem_classes, default=ap_stem_classes)
     else:
-        filtered_ap_classes = ap_stem_container.multiselect(
+        filtered_ap_stem_classes = ap_stem_container.multiselect(
             'Select AP STEM classes', ap_stem_classes)
 
 with right_4:
@@ -166,15 +166,15 @@ with right_4:
     all_ap = st.checkbox('Select all AP Humanities classes',
                          key='ap humanities')
     if all_ap or select_all_classes_button:
-        filtered_ap_classes = ap_humanities_container.multiselect(
+        filtered_ap_humanities_classes = ap_humanities_container.multiselect(
             'Select AP Humanities classes',
             ap_humanities_classes,
             default=ap_humanities_classes)
     else:
-        filtered_ap_classes = ap_humanities_container.multiselect(
+        filtered_ap_humanities_classes = ap_humanities_container.multiselect(
             'Select AP Humanities classes', ap_humanities_classes)
 
-filtered_classes = filtered_ces_classes + filtered_csem_classes + filtered_el_classes + filtered_ell_classes + filtered_leaf_core_classes + filtered_math_classes + filtered_nl_classes + filtered_science_classes + filtered_ap_classes
+filtered_classes = filtered_ces_classes + filtered_csem_classes + filtered_el_classes + filtered_ell_classes + filtered_leaf_core_classes + filtered_math_classes + filtered_nl_classes + filtered_science_classes + filtered_ap_humanities_classes + filtered_ap_stem_classes
 
 if (len(filtered_classes) == 0):
     no_selected_classes_container.warning(
