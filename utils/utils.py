@@ -5,6 +5,28 @@ import seaborn as sns
 import altair as alt
 from cryptography.fernet import Fernet
 import io
+import streamlit_authenticator as stauth
+
+
+def check_authentication():
+    users = list(st.secrets['passwords'].keys())
+    passwords = list(st.secrets['passwords'].values())
+    usernames = {}
+    for i in range(len(users)):
+        usernames[users[i]] = {"name": users[i], "password": passwords[i]}
+
+    result = {"usernames": usernames}
+
+    authenticator = stauth.Authenticate(
+        result,
+        st.secrets['cookie']['name'],
+        st.secrets['cookie']['key'],
+        st.secrets['cookie']['expiry_days'],
+    )
+
+    name, authentication_status, username = authenticator.login(
+        'Log in', 'main')
+    return authentication_status, authenticator, username
 
 
 def altair_class_barchart(df, aggregate):
@@ -16,18 +38,16 @@ def altair_class_barchart(df, aggregate):
                           title='{} score'.format(aggregate)),
             scale=alt.Scale(domain=(0, 10)),
         ),
-        y=alt.Y(
-            'variable',
-            axis=alt.Axis(title=''),
-            sort=alt.EncodingSortField(field='value',
-                                       order='descending',
-                                       op='sum')), tooltip=alt.value(None)
-                                       
-                                       ).transform_aggregate(
-                                           value='{}(value)'.format(aggregate),
-                                           groupby=['variable'],
-                                           #disable tooltip
-                                       )
+        y=alt.Y('variable',
+                axis=alt.Axis(title=''),
+                sort=alt.EncodingSortField(field='value',
+                                           order='descending',
+                                           op='sum')),
+        tooltip=alt.value(None)).transform_aggregate(
+            value='{}(value)'.format(aggregate),
+            groupby=['variable'],
+            #disable tooltip
+        )
 
     chart_text = chart.mark_text(
         align='left',
@@ -258,9 +278,9 @@ TEACHERS = {
         'CSem 3C', 'CSem 4C', 'CSEM 1', 'CSem 2C', 'CSem 2A', 'CSem 2B',
         'CSem 3A', 'CSem 3B', 'CSem 4A', 'CSem 4B'
     ],
-    'jakabovic':[],
-    'townsend':[],
-    'pusey':[]
+    'jakabovic': [],
+    'townsend': [],
+    'pusey': []
 }
 
 ALL_ACCESS = ['sapak', 'klagova', 'zavodsky', 'potash', 'retkovsky', 'sedlar']
