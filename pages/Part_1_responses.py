@@ -31,7 +31,7 @@ if authentication_status:
   st.markdown(read_markdown_file("markdown/response_rate_information.md"),
               unsafe_allow_html=True)
 
-  df = decrypt_data('part_1_data_merged.csv')
+  df = decrypt_data('data/part_1_data_merged.csv')
 
   st.info('## Questions 1-4')
   selected_question = st.selectbox(

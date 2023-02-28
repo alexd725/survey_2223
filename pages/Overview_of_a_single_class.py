@@ -30,9 +30,9 @@ if authentication_status:
     )
     st.image(violin_image, use_column_width=True)
 
-    df = decrypt_data('survey_data_2223.csv')
+    df = decrypt_data('data/survey_data_2223.csv')
     # df_summary = pd.read_csv('survey_data_2223_melted.csv')
-    df_summary = decrypt_data('survey_data_2223_summary.csv')
+    df_summary = decrypt_data('data/survey_data_2223_summary.csv')
 
     questions = df.columns[4:-4].tolist()
 
